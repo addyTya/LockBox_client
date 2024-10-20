@@ -1,5 +1,7 @@
 import React,{useEffect, useState} from "react";
 import Axios  from "axios"
+
+
 export default function getPass(){
     const [pass,setPass] = useState("")
     const [decPass,setDec] = useState("")
@@ -11,8 +13,9 @@ export default function getPass(){
     //source and then give you the result that maps to it
     async function handleClick(event){
         event.preventDefault()
-        const backendUrl = process.env.REACT_APP_BACKEND_URL;  
-        await Axios.post(`${backendUrl}/revealpassword`,{title:pass}).then((response)=>{
+        
+        await Axios.post(`https://lockbox-server.onrender.com/revealpassword`,{title:pass}).then((response)=>{
+            console.log("button clicked")
             setRead(true)
             if(response.data === "Error: 404; Data entry not found!!"){
                 alert("No entry for the given source")
@@ -37,11 +40,6 @@ export default function getPass(){
                 
             </div>
             </div>
-            {/* <div>
-                <input type={read ? "password" : "text"} placeholder="view your password here" value={decPass} onClick={()=>{setRead(!read)}} />
-
-                
-            </div> */}
         </>
     )
 }

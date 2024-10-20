@@ -11,8 +11,8 @@ export default function SavePass(){
    async function savePassword(event){
         event.preventDefault()
         setloading(true)
-        const backendUrl = process.env.REACT_APP_BACKEND_URL;  
-        await Axios.post(`${backendUrl}/addpassword`,
+        
+        await Axios.post(`https://lockbox-server.onrender.com/addpassword`,
         {password: password, title: title})
         alert("successfully saved")
         setloading(false)
